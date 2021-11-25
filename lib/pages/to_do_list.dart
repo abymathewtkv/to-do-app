@@ -10,6 +10,14 @@ class ToDoListPage extends StatelessWidget {
         .add({"title": _controller.text});
   }
 
+  onDelete(String id){
+    FirebaseFirestore.instance.collection("todos").doc(id).delete();
+    
+
+  }
+
+
+
   Widget _buildBody(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -38,8 +46,21 @@ class ToDoListPage extends StatelessWidget {
                 return Expanded(
                   child: ListView(
                     children: snapshot.data!.docs.map((document) {
-                      return ListTile(
+                      return Dismissible(
+                        key: Key(document.id),
+                        onDismissed: (direction){
+                         onDelete(document.id);
+                        },
+                        background: Container(
+                          alignment: Alignment.centerRight,
+                          color: Colors.red,
+                          child: Icon(Icons.delete),
+                        ),
+                        child: ListTile(
+
+
                         title: Text(document['title']),
+                        ),
                       );
                     }).toList(),
                   ),
