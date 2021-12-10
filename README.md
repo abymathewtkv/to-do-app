@@ -2,7 +2,7 @@
 
 
 
-#### This is the basic To_Do_App. UI consists of one page and cloud firestore used as backend(database).
+#### This is the basic To_Do_App. UI consists of one page and Firebase used as backend(database).
 # Tools Used : Flutter, Firebase
 
 ## Documentation
